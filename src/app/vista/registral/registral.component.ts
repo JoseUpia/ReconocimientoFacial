@@ -43,8 +43,17 @@ export class RegistralComponent implements OnInit {
         console.log(res);
         this.estado.cambiosEvento.emit({mesage: 'Enviando imagen...', terminado: false});
         this.http.addFaceToPerson(res.personId, this.dataImg).subscribe( res => {
-          console.log(res)
-          this.estado.cambiosEvento.emit({mesage: 'Listo...', terminado: true});
+          console.log(res);
+          this.estado.cambiosEvento.emit({mesage: 'Entrenado modelos...', terminado: false});
+          this.http.train().subscribe( res => {
+           console.log(res);
+           this.http.training().subscribe( res => {
+             console.log(res);
+             this.estado.cambiosEvento.emit({mesage: 'Listo...', terminado: true});
+           }, err => {
+             this.estado.cambiosEvento.emit({mesage: 'Error', terminado: true})
+           });
+          });
         });
       });
       
@@ -54,7 +63,13 @@ export class RegistralComponent implements OnInit {
     }
   }
 
-  
+  // training(){
+  //   this.http.training().subscribe( res => {
+  //     if(res.status == "succeeded") 
+  //      this.estado.cambiosEvento.emit({mesage: 'Entrenado modelos...', terminado: false});
+
+  //   });
+  // }
   openDialog(): void{
     const dialogRef = this.dialog.open(DialogIdentificarComponent, {
       width: '300px',
