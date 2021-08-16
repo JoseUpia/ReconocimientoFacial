@@ -1,0 +1,13 @@
+#divVideo{
+    height: 400px;
+
+    video{
+        display: flex;
+        justify-content: left;
+        align-items: left;
+    }
+    canvas{
+        position: absolute;
+    }
+}
+
