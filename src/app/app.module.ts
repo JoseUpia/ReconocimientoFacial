@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //Componenetes
 import { PrincipalComponent } from './vista/principal/principal.component';
@@ -49,6 +50,7 @@ import { DialogIdentificarComponent } from './componente/dialog-identificar/dial
     MatDialogModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     //Otros
     HttpClientModule,
     FormsModule
