@@ -58,18 +58,10 @@ export class RegistralComponent implements OnInit {
       });
       
     }else{
-      this.estado.cambiosEvento.emit({mesage: 'Debe completar el proceso antes de regitral', terminado: true});
       console.log('no iniciado')
     }
   }
 
-  // training(){
-  //   this.http.training().subscribe( res => {
-  //     if(res.status == "succeeded") 
-  //      this.estado.cambiosEvento.emit({mesage: 'Entrenado modelos...', terminado: false});
-
-  //   });
-  // }
   openDialog(): void{
     const dialogRef = this.dialog.open(DialogIdentificarComponent, {
       width: '300px',

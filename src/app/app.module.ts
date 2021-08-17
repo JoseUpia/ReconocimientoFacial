@@ -17,7 +17,6 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 //Componenetes
 import { PrincipalComponent } from './vista/principal/principal.component';
 import { WebCamComponent } from './componente/web-cam/web-cam.component'
-import { PruebaComponent } from './vista/prueba/prueba.component';
 import { RegistralComponent } from './vista/registral/registral.component';
 import { IdentificarRostroComponent } from './vista/identificar-rostro/identificar-rostro.component';
 
@@ -32,7 +31,6 @@ import { DialogIdentificarComponent } from './componente/dialog-identificar/dial
     AppComponent,
     PrincipalComponent,
     IdentificarRostroComponent,
-    PruebaComponent,
     RegistralComponent,
     WebCamComponent,
     DialogIdentificarComponent
@@ -49,6 +47,7 @@ import { DialogIdentificarComponent } from './componente/dialog-identificar/dial
     MatDialogModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    
     //Otros
     HttpClientModule,
     FormsModule

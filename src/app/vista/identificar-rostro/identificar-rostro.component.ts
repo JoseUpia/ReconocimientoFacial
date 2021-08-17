@@ -22,6 +22,7 @@ export class IdentificarRostroComponent implements OnInit {
   dimensionVideo?: { width: any; height: any; };
   name: string = ''
   confidence: string = ''
+  dataOk: boolean = true;
 
   constructor(
     private video: VideoService, 
