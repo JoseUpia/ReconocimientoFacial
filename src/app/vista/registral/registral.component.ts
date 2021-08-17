@@ -43,6 +43,8 @@ export class RegistralComponent implements OnInit {
         console.log(res);
         this.estado.cambiosEvento.emit({mesage: 'Enviando imagen...', terminado: false});
         this.http.addFaceToPerson(res.personId, this.dataImg).subscribe( res => {
+          //console.log(res)
+          //this.estado.cambiosEvento.emit({mesage: 'Listo...', terminado: true});
           console.log(res);
           this.estado.cambiosEvento.emit({mesage: 'Entrenado modelos...', terminado: false});
           this.http.train().subscribe( res => {

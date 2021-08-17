@@ -7,6 +7,8 @@ import { HttpService } from 'src/app/servicio/http.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogIdentificarComponent } from 'src/app/componente/dialog-identificar/dialog-identificar.component';
 import { EstadosService } from 'src/app/servicio/estados.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-identificar-rostro',
@@ -28,7 +30,8 @@ export class IdentificarRostroComponent implements OnInit {
     private video: VideoService, 
     private http: HttpService, 
     public dialog: MatDialog,
-    private estado: EstadosService
+    private estado: EstadosService,
+    private _snackBar: MatSnackBar
     ) {
    
   }
@@ -48,7 +51,7 @@ export class IdentificarRostroComponent implements OnInit {
         console.log(res);
         let candidates = res[0].candidates;
         console.log(res[0].candidates.length);
-        if(candidates.length > 0)
+        if(candidates.length > 0){
           this.confidence = candidates[0].confidence
           this.estado.cambiosEvento.emit({mesage:'Obteniendo nombre del rostro', terminado: false});
           this.http.getPerson(candidates[0].personId).subscribe( res => {
@@ -56,8 +59,19 @@ export class IdentificarRostroComponent implements OnInit {
             console.log(res)
             this.estado.cambiosEvento.emit({mesage:'Listo...', terminado: true})
           });  
+        }else{
+          this.estado.cambiosEvento.emit({mesage: 'Rostro no detectado', terminado: true});
+          this.name = '';
+          this.confidence = '';
+          this.openSnackBar('Rostro no encontrado', 'Aceptar');
+        }
       });
     });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {duration: 5000});
+
   }
 
   openDialog(): void{
