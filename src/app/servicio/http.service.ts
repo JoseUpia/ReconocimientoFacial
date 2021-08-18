@@ -8,70 +8,53 @@ import { config } from "../../environments/config";
 })
 export class HttpService {
   
-  private urlAddPerson = 'https://centralus.api.cognitive.microsoft.com/face/v1.0/persongroups/faceapp01/persons'
-  key1 = 'e45b6a937fa2466e978bfbe709261a86'
-  key2 = config.clave2
-  private url: string = 'https://centralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_04&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400';
-
-  private body: any = {url: 'https://elpersonalista.com/wp-content/uploads/2018/05/lentes.jpg'}
-
-  private headersJson = new HttpHeaders(
-    { 
-    'Content-Type': 'application/json', 
-    'Ocp-Apim-Subscription-Key': this.key1
-    }
-  );
-
-  private headersOctent = new HttpHeaders({
-        'Content-Type':  'application/octet-stream',
-        'Ocp-Apim-Subscription-Key': this.key1
-      })
 
   constructor(private http: HttpClient) { 
   }
 
   getPerson(personId: string): Observable<any> {
-    let url = `https://centralus.api.cognitive.microsoft.com/face/v1.0/persongroups/faceapp01/persons/${personId}`;
-    return this.http.get(url, {headers: this.headersJson});
+    let url = `${config.host}persongroups/${config.personGruop}/persons/${personId}`;
+    return this.http.get(url, {headers: config.headers.JSON});
   }
   
   addPerson(name: String): Observable<any> {
+    let url = `${config.host}persongroups/${config.personGruop}/persons`
     let body = {name: name};
-    return this.http.post<any>(this.urlAddPerson, body, {headers: this.headersJson});
+    return this.http.post<any>(url, body, {headers:  config.headers.JSON});
   }
 
   addFaceToPerson(personId: string, data: any): Observable<{persistedFaceId: string}> {
-    let url = `https://centralus.api.cognitive.microsoft.com/face/v1.0/persongroups/faceapp01/persons/${personId}/persistedFaces?detectionModel=detection_01`
-    return this.http.post<{persistedFaceId: string}>(url, this.makeblob(data), {headers: this.headersOctent});
+    let url = `${config.host}persongroups/${config.personGruop}/persons/${personId}/persistedFaces?detectionModel=detection_01`
+    return this.http.post<{persistedFaceId: string}>(url, this.makeblob(data), {headers: config.headers.Octent_stream});
   }
 
   train(): Observable<any> {
-    let url = 'https://centralus.api.cognitive.microsoft.com/face/v1.0/persongroups/faceapp01/train'
-    return this.http.post(url,{}, {headers: this.headersJson})
+    let url = `${config.host}persongroups/${config.personGruop}/train`
+    return this.http.post(url,{}, {headers: config.headers.JSON})
   }
 
   training(){
-    let url = 'https://centralus.api.cognitive.microsoft.com/face/v1.0/persongroups/faceapp01/training'
-    return this.http.post(url, {}, {headers: this.headersJson})
+    let url = `${config.host}persongroups/${config.personGruop}/training`
+    return this.http.post(url, {}, {headers: config.headers.JSON})
   }
 
   detecionFace(data: any): Observable<any>{
-    let url = 'https://centralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400';
-    return this.http.post<any>(url, this.makeblob(data), {headers: this.headersOctent});
+    let url = `${config.host}detect?returnFaceId=${config.atributo.returnFaceId}&returnFaceLandmarks=${config.atributo.returnFaceLandmarks}&recognitionModel=${config.atributo.recognitionModel}&returnRecognitionModel=${config.atributo.returnRecognitionModel}&detectionModel=${config.atributo.detectionModel}&faceIdTimeToLive=${config.atributo.faceIdTimeToLive}`;
+    return this.http.post<any>(url, this.makeblob(data), {headers: config.headers.Octent_stream});
   }
 
   identify(faceIds: string[]): Observable<any>{
-    let url = 'https://centralus.api.cognitive.microsoft.com/face/v1.0/identify';
+    let url = `${config.host}identify`;
     let body = {
-      personGroupId: 'faceapp01',
+      personGroupId: config.personGruop,
       faceIds: faceIds,
       maxNumOfCandidatesReturned: 1,
       confidenceThreshold: 0.5
     };
-    return this.http.post(url, body, {headers: this.headersJson});
+    return this.http.post(url, body, {headers: config.headers.JSON});
   }
 
-  makeblob(dataURL: any) {
+  private makeblob(dataURL: any) {
     var BASE64_MARKER = ';base64,';
     if (dataURL.indexOf(BASE64_MARKER) == -1) {
         var parts = dataURL.split(',');

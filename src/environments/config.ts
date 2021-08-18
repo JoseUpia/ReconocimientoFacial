@@ -1,6 +1,23 @@
+import { HttpHeaders } from "@angular/common/http";
+
+const clave1 = 'e45b6a937fa2466e978bfbe709261a86';
+const cleve2 = '';
+
 export let config = {
-    extremo: 'https://detect-faces.cognitiveservices.azure.com/',
-    clave1: '1b64dd5cb005442fb9e7e317eafe2a27',
-    clave2: '6a47fb10e7e8418a981375f1e55bbef9',
-    region: 'southcentralus'
+    host: 'https://centralus.api.cognitive.microsoft.com/face/v1.0/',
+    clave1: clave1,
+    clave2: '',
+    personGruop: 'faceapp01',
+    headers: {
+        Octent_stream: new HttpHeaders({'Content-Type':  'application/octet-stream', 'Ocp-Apim-Subscription-Key': clave1}),
+        JSON: new HttpHeaders({'Content-Type': 'application/json', 'Ocp-Apim-Subscription-Key': clave1}),
+    },
+    atributo: {
+        detectionModel: 'detection_03',
+        recognitionModel:'recognition_03',
+        returnFaceId: 'true',
+        returnFaceLandmarks: 'false',
+        returnRecognitionModel: 'false',
+        faceIdTimeToLive:'86400'
+    }
 }

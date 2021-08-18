@@ -25,6 +25,9 @@ import { IdentificarRostroComponent } from './vista/identificar-rostro/identific
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogIdentificarComponent } from './componente/dialog-identificar/dialog-identificar.component';
+import { SidenavComponent } from './componente/sidenav/sidenav.component';
+import { DialogAcerdaDeComponent } from './componente/dialog-acerda-de/dialog-acerda-de.component';
+import { DialogComoUsarComponent } from './componente/dialog-como-usar/dialog-como-usar.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { DialogIdentificarComponent } from './componente/dialog-identificar/dial
     IdentificarRostroComponent,
     RegistralComponent,
     WebCamComponent,
-    DialogIdentificarComponent
+    DialogIdentificarComponent,
+    SidenavComponent,
+    DialogAcerdaDeComponent,
+    DialogComoUsarComponent
   ],
   imports: [
     BrowserModule,

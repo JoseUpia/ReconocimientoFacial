@@ -22,8 +22,8 @@ export class IdentificarRostroComponent implements OnInit {
 
   public stream?: MediaStream;
   dimensionVideo?: { width: any; height: any; };
-  name: string = ''
-  confidence: string = ''
+  name: string = ' ----------- '
+  confidence: string = ' ----------- '
   dataOk: boolean = true;
 
   constructor(
