@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter, ElementRef } from '@angular/core';
-import { type } from 'os';
 import { ModelosService } from './modelos.service';
 
 @Injectable({
@@ -16,9 +15,9 @@ export class VideoService {
   }
 
 getStream(): any {
-  if(this.stream)
-    return this.stream;
-  
+  if(this.stream) return this.stream;
+
+  this.getVideo();
 }
 
 
@@ -41,8 +40,7 @@ getStream(): any {
     }
   }
 
-  captura(img: ElementRef | undefined = undefined): any  {
-    const video: HTMLVideoElement | null = document.querySelector('#video');
+  captura(video: any,  img: ElementRef | undefined = undefined): any  {
     let width = video?.getAttribute('width');
     let height = video?.getAttribute('height');
  

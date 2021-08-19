@@ -40,9 +40,11 @@ export class IdentificarRostroComponent implements OnInit {
   }
 
   identificar(){
+    const vide: HTMLVideoElement | null = document.querySelector('#video');
+
     this.openDialog();
     this.estado.cambiosEvento.emit({mesage:'Obteniendo imagen...', terminado: false});
-    let data = this.video.captura();
+    let data = this.video.captura(vide);
     this.estado.cambiosEvento.emit({mesage:'Buscando rostros en la imagen...', terminado: false});
     this.http.detecionFace(data).subscribe(res => {
       console.log(res);

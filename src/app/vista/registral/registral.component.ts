@@ -29,8 +29,9 @@ export class RegistralComponent implements OnInit {
   }
 
   capturar() {
-    if (this.img) {
-      this.dataImg  = this.video.captura(this.img);
+    const vide: HTMLVideoElement | null = document.querySelector('#video');
+    if (this.img && vide) {      
+      this.dataImg  = this.video.captura(vide, this.img);
     }
   }
 

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IdentificarRostroComponent } from './vista/identificar-rostro/identificar-rostro.component';
+import { IdentificarSenaComponent } from './vista/identificar-sena/identificar-sena.component';
 import { PrincipalComponent } from './vista/principal/principal.component';
-import { RegistralComponent } from './vista/registral/registral.component';
 
 const routes: Routes = [
-  {path: '', component: PrincipalComponent, pathMatch: 'full'}
+  {path: '', pathMatch: 'full', redirectTo: '/identificar_rostro'},
+  {path: 'identificar_rostro', component: PrincipalComponent},
+  {path: 'identifiar_seña', component: IdentificarSenaComponent}
 ];
 
 @NgModule({

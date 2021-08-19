@@ -28,6 +28,7 @@ import { DialogIdentificarComponent } from './componente/dialog-identificar/dial
 import { SidenavComponent } from './componente/sidenav/sidenav.component';
 import { DialogAcerdaDeComponent } from './componente/dialog-acerda-de/dialog-acerda-de.component';
 import { DialogComoUsarComponent } from './componente/dialog-como-usar/dialog-como-usar.component';
+import { IdentificarSenaComponent } from './vista/identificar-sena/identificar-sena.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { DialogComoUsarComponent } from './componente/dialog-como-usar/dialog-co
     DialogIdentificarComponent,
     SidenavComponent,
     DialogAcerdaDeComponent,
-    DialogComoUsarComponent
+    DialogComoUsarComponent,
+    IdentificarSenaComponent
   ],
   imports: [
     BrowserModule,
