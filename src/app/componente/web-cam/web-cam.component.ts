@@ -17,9 +17,7 @@ export class WebCamComponent implements OnInit {
   play?: boolean;
   url = '../../../assets/models'
 
-  constructor(private videoS: VideoService, private modelo: ModelosService) {
-
-  }
+  constructor(private videoS: VideoService, private modelo: ModelosService) {  }
 
   ngOnInit(): void {
     this.verificarStream();

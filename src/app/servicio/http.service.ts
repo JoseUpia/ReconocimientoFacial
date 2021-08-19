@@ -54,6 +54,10 @@ export class HttpService {
     return this.http.post(url, body, {headers: config.headers.JSON});
   }
 
+  identifyHard(data: any): Observable<any> {
+    return this.http.post(config.hostHand, this.makeblob(data), {headers: config.headers.hand_Octent_stream});
+  }
+
   private makeblob(dataURL: any) {
     var BASE64_MARKER = ';base64,';
     if (dataURL.indexOf(BASE64_MARKER) == -1) {
