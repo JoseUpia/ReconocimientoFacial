@@ -17,8 +17,8 @@ export class IdentificarSenaComponent implements OnInit {
   stream?: MediaStream;
   play?: boolean;
   dataImg: any;
-  tagName?: string;
-  probability?: number;
+  tagName?: string = ' ------- ';
+  probability?: string  = ' ------- ';
 
   constructor(
     private videoS: VideoService, 
@@ -41,14 +41,18 @@ export class IdentificarSenaComponent implements OnInit {
   }
   
   identificar(): void {
-    this.openDialog();
-    this.estadoEvento.cambiosEvento.emit({mesage:'Analizando imagen...', terminado: false});
-    this.http.identifyHard(this.dataImg).subscribe( res => {
-      console.log(res);
-        this.tagName = res.predictions[0].tagName;
-        this.probability = res.predictions[0].probability;
-        this.estadoEvento.cambiosEvento.emit({mesage:'Listo...', terminado: true});
-    });
+    if(this.dataImg){
+      this.openDialog();
+      this.estadoEvento.cambiosEvento.emit({mesage:'Analizando imagen...', terminado: false});
+      this.http.identifyHard(this.dataImg).subscribe( res => {
+        console.log(res);
+          this.tagName = res.predictions[0].tagName;
+          this.probability = res.predictions[0].probability;
+          this.estadoEvento.cambiosEvento.emit({mesage:'Listo...', terminado: true});
+      });
+    }else {
+      this.openSnackBar('No has capturaro ninguna imagen', 'Aceptar');
+    }
   }
 
   capturar() {
